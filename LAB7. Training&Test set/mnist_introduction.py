@@ -31,13 +31,15 @@ is_correct = tf.equal(tf.arg_max(hypothesis, 1), tf.arg_max(Y, 1))
 accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
 
 # parameters
-training_epochs = 15
+training_epochs = 25
 batch_size = 100
 
 sess = tf.Session()
 # Initialize TensorFlow variables
 sess.run(tf.global_variables_initializer())
 # Training cycle
+
+print("Learning Start")
 for epoch in range(training_epochs):
 	avg_cost = 0
 	total_batch = int(mnist.train.num_examples / batch_size)
@@ -61,5 +63,7 @@ print("Prediction: ", sess.run(tf.argmax(hypothesis, 1), feed_dict={X: mnist.tes
 
 plt.imshow(mnist.test.images[r:r + 1].reshape(28, 28), cmap='Greys', interpolation='nearest')
 plt.show()
+
+
 
 
